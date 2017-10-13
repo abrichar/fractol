@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/13 16:07:46 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/13 18:05:16 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ typedef struct	s_fractol
 }				t_fractol;
 
 void   			fill_pixel(int *data, int x, int y, int color);
+void			mandelbrot(t_fractol *fract);
 #endif

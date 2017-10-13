@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/13 16:07:01 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/13 18:56:35 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,20 @@ static int		select_fractal(char *name, t_fractol *fract)
 	return (1);
 }
 
+static void		init_fract(t_fractol *fract)
+{
+	fract->mid_x = PIXEL_X / 2;
+	fract->mid_y = PIXEL_Y / 2;
+	fract->mlx = mlx_init();
+	fract->win = mlx_new_window(fract->mlx, PIXEL_X, PIXEL_Y, fract->name);
+	fract->img.bpp = 0;
+	fract->img.s_line = 0;
+	fract->img.endian = 0;
+	fract->img.ptr = mlx_new_image(fract->mlx, PIXEL_X, PIXEL_Y);
+	fract->img.data = (int *)mlx_get_data_addr(fract->img.ptr, &(fract->img.bpp),
+						&(fract->img.s_line), &(fract->img.endian));
+}
+
 int				main(int argc, char **argv)
 {
 	t_fractol fract;
@@ -54,17 +68,8 @@ int				main(int argc, char **argv)
 		ft_putstr("| ./fractol test01\n");
 		return (0);
 	}
-	fract.mid_x = PIXEL_X / 2;
-	fract.mid_y = PIXEL_Y / 2;
-	fract.mlx = mlx_init();
-	fract.win = mlx_new_window(fract.mlx, PIXEL_X, PIXEL_Y, fract.name);
-	fract.img.bpp = 0;
-	fract.img.s_line = 0;
-	fract.img.endian = 0;
-	fract.img.ptr = mlx_new_image(fract.mlx, PIXEL_X, PIXEL_Y);
-	fract.img.data = (int *)mlx_get_data_addr(fract.img.ptr, &(fract.img.bpp),
-									&(fract.img.s_line), &(fract.img.endian));
-	fill_pixel(fract.img.data, fract.mid_x, fract.mid_y, 0xFFFFFF);
+	init_fract(&fract);
+	mandelbrot(&fract);
 	mlx_put_image_to_window(fract.mlx, fract.win, fract.img.ptr, 0, 0);
 	mlx_key_hook(fract.win, key_react, &fract);
 	mlx_loop(fract.mlx);
