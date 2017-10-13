@@ -6,7 +6,7 @@
 #    By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 14:47:20 by abrichar          #+#    #+#              #
-#    Updated: 2017/10/12 17:10:18 by abrichar         ###   ########.fr        #
+#    Updated: 2017/10/13 15:56:52 by abrichar         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,7 +17,7 @@ CPPFLAGS = -Iincludes/
 CFLAGS = -Wall -Werror -Wextra
 E1E2 = -lmlx
 
-SRC_NAME = main.c
+SRC_NAME = main.c draw.c
 SRC_PATH = src
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_PATH = obj
