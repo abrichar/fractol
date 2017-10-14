@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/13 18:05:16 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/14 11:55:51 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include "mlx.h"
 # include "../libft/includes/libft.h"
 # include <math.h>
-# define PIXEL_X 1000
-# define PIXEL_Y 1000
+# define PIXEL_X 500
+# define PIXEL_Y 500
 
 typedef struct s_img
 {
@@ -24,7 +24,7 @@ typedef struct s_img
 	int			bpp;
 	int			s_line;
 	int			endian;
-	int			*data;
+	char		*data;
 }				t_img;
 
 typedef struct	s_fractol
@@ -40,6 +40,6 @@ typedef struct	s_fractol
 	int			endian;
 }				t_fractol;
 
-void   			fill_pixel(int *data, int x, int y, int color);
+void   			fill_pixel(t_img *img, int x, int y, int color);
 void			mandelbrot(t_fractol *fract);
 #endif

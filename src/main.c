@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/13 18:56:35 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/14 11:57:03 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		init_fract(t_fractol *fract)
 	fract->img.s_line = 0;
 	fract->img.endian = 0;
 	fract->img.ptr = mlx_new_image(fract->mlx, PIXEL_X, PIXEL_Y);
-	fract->img.data = (int *)mlx_get_data_addr(fract->img.ptr, &(fract->img.bpp),
+	fract->img.data = (char *)mlx_get_data_addr(fract->img.ptr, &(fract->img.bpp),
 						&(fract->img.s_line), &(fract->img.endian));
 }
 
@@ -70,7 +70,6 @@ int				main(int argc, char **argv)
 	}
 	init_fract(&fract);
 	mandelbrot(&fract);
-	mlx_put_image_to_window(fract.mlx, fract.win, fract.img.ptr, 0, 0);
 	mlx_key_hook(fract.win, key_react, &fract);
 	mlx_loop(fract.mlx);
 	return (0);

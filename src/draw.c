@@ -6,15 +6,27 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/13 15:02:29 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/13 18:43:14 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/14 13:06:30 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	fill_pixel(int *data, int x, int y, int color)
+void	fill_pixel(t_img *img, int x, int y, int color)
 {
-	data[y * PIXEL_X + x] = color;
+	int r;
+	int g;
+	int b;
+
+	r = (color & 0xFF0000) >> 16;
+	g = (color & 0xFF00) >> 8;
+	b = (color & 0xFF);
+	if (y >= 0 && x >= 0 && PIXEL_X > x && PIXEL_Y > y)
+	{
+		img->data[(y * img->s_line) + ((img->bpp / 8) * x) + 2] = r;
+		img->data[(y * img->s_line) + ((img->bpp / 8) * x) + 1] = g;
+		img->data[(y * img->s_line) + ((img->bpp / 8) * x)] = b;
+	}
 }
 
 void	mandelbrot(t_fractol *fract)
@@ -27,8 +39,8 @@ void	mandelbrot(t_fractol *fract)
 	float y2;
 	int zoom;
 	int i_max;
-	int img_x;
-	int img_y;
+	float img_x;
+	float img_y;
 	float c_r;
 	float c_i;
 	float z_r;
@@ -63,19 +75,13 @@ void	mandelbrot(t_fractol *fract)
 				i++;
 			}
 			if (i == i_max)
-			{
-				fract->img.data[y * PIXEL_X + x] = 0;
-				fill_pixel(fract->img.data, x, y, 0xFFFFFF);
-			}
+				fill_pixel(&fract->img, x, y, 0xFF0000);
 			else
-			{
-				fract->img.data[y * PIXEL_X + x] = 9;
-				fill_pixel(fract->img.data, x, y, 0x000000);
-			}
+				fill_pixel(&fract->img, x, y, 0x0000FF);
 			y++;
 		}
 		x++;
 	}
-	fill_pixel(fract->img.data, PIXEL_X / 2, PIXEL_Y / 2, 0xFFFFFF);
+	fill_pixel(&fract->img, PIXEL_X / 2, PIXEL_Y / 2, 0x00FF00);
 	mlx_put_image_to_window(fract->mlx, fract->win, fract->img.ptr, 0, 0);
 }
