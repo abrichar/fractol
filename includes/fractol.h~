@@ -6,13 +6,12 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/23 17:33:18 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:16:30 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# include <stdio.h> ////////////////////////////
 # include "mlx.h"
 # include "../libft/includes/libft.h"
 # include <math.h>
