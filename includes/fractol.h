@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/23 17:33:18 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/24 17:54:49 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,27 @@ typedef struct	s_fractol
 	int			s_line;
 	int			endian;
 }				t_fractol;
+
+typedef struct	s_mandelbrot
+{
+	int			x;
+	int			y;
+	double		x1;
+	double		x2;
+	double		y1;
+	double		y2;
+	double		zoomx;
+	double		zoomy;
+	int			i_max;
+	double		img_y;
+	double		img_x;
+	double		c_r;
+	double		c_i;
+	double		z_r;
+	double		z_i;
+	int			i;
+	double		tmp;
+}				t_mandelbrot;
 
 void   			fill_pixel(t_img *img, int x, int y, int color);
 void			mandelbrot(t_fractol *fract);
