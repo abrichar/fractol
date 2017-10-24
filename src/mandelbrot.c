@@ -6,13 +6,13 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 18:37:55 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/24 18:05:22 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/24 18:11:54 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	mandelbrot2(t_mandelbrot *mand, t_fractol *fract)
+static void	mandelbrot2(t_fractal *mand, t_fractol *fract)
 {
 	mand->c_r = mand->x / mand->zoomx + mand->x1;
 	mand->c_i = mand->y / mand->zoomy + mand->y1;
@@ -37,7 +37,7 @@ static void	mandelbrot2(t_mandelbrot *mand, t_fractol *fract)
 
 void		mandelbrot(t_fractol *fract)
 {
-	t_mandelbrot mand;
+	t_fractal mand;
 
 	mand.x1 = -2.1;
 	mand.x2 = 0.6;

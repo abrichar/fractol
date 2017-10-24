@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/24 18:07:49 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/24 18:21:55 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int		select_fractal(char *name, t_fractol *fract)
 	{
 		fract->name = (char *)malloc(sizeof(char) * 6);
 		fract->name = "Julia";
+		julia(fract);
 	}
 	else if (strcmp(name, "Mandelbrot") == 0)
 	{

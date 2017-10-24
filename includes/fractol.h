@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/24 17:54:49 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/24 18:21:35 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct	s_fractol
 	int			endian;
 }				t_fractol;
 
-typedef struct	s_mandelbrot
+typedef struct	s_fractal
 {
 	int			x;
 	int			y;
@@ -60,8 +60,9 @@ typedef struct	s_mandelbrot
 	double		z_i;
 	int			i;
 	double		tmp;
-}				t_mandelbrot;
+}				t_fractal;
 
 void   			fill_pixel(t_img *img, int x, int y, int color);
 void			mandelbrot(t_fractol *fract);
+void			julia(t_fractol *fract);
 #endif
