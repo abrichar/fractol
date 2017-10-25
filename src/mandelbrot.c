@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 18:37:55 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/24 18:11:54 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/25 14:59:28 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	mandelbrot2(t_fractal *mand, t_fractol *fract)
 		mand->i++;
 	}
 	if (mand->i == mand->i_max)
-		fill_pixel(&fract->img, mand->x, mand->y, 0x0000FF);
-	else
 		fill_pixel(&fract->img, mand->x, mand->y, 0x000000);
+	else
+		fill_pixel(&fract->img, mand->x, mand->y, 0x0000FF);
 	mand->y++;
 }
 

@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 04:27:15 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/10 11:29:01 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:20:03 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,5 @@ short				ft_countnbr(long nbr);
 short				ft_countunbr(unsigned long nbr);
 void				ft_putzerox(char letter);
 char				*ft_itoabaseu(unsigned long nbr, int base, char min);
+int					**ft_tabint(int x, int y);
 #endif

@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/24 18:21:35 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/25 18:39:10 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,15 @@ typedef struct	s_fractal
 	double		tmp;
 }				t_fractal;
 
+typedef struct	s_coord
+{
+	int x;
+	int y;
+}				t_coord;
+
 void   			fill_pixel(t_img *img, int x, int y, int color);
 void			mandelbrot(t_fractol *fract);
 void			julia(t_fractol *fract);
+int				buddhabrot(t_fractol *fract);
+void			rgb(int ***tab, t_fractal *bud, t_fractol *fract);
 #endif

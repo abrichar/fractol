@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/24 18:21:55 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/25 16:46:16 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ static int		select_fractal(char *name, t_fractol *fract)
 		fract->name = "Mandelbrot";
 		mandelbrot(fract);
 	}
-	else if (strcmp(name, "test01") == 0)
+	else if (strcmp(name, "Buddhabrot") == 0)
 	{
 		fract->name = (char *)malloc(sizeof(char) * 7);
-		fract->name = "test01";
+		fract->name = "Buddhabrot";
+		if (buddhabrot(fract) == 0)
+			return (0);
 	}
 	else
 		return (0);
@@ -70,7 +72,7 @@ int				main(int argc, char **argv)
 	if (argc != 2 || (init_fract(&fract, argv[1])) == 0)
 	{
 		ft_putstr("usage: ./fractol Julia | ./fractol Mandelbrot ");
-		ft_putstr("| ./fractol test01\n");
+		ft_putstr("| ./fractol Buddhabrot\n");
 		return (0);
 	}
 	mlx_key_hook(fract.win, key_react, &fract);
