@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/25 16:46:16 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/26 18:28:08 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int		key_react(int keycode, t_fractol *fract)
 		mlx_destroy_window(fract->mlx, fract->win);
 		exit(EXIT_SUCCESS);
 	}
+	ft_putnbr(keycode);
 	return (1);
 }
 
@@ -36,15 +37,15 @@ static int		select_fractal(char *name, t_fractol *fract)
 		fract->name = "Mandelbrot";
 		mandelbrot(fract);
 	}
-	else if (strcmp(name, "Buddhabrot") == 0)
+	else if (strcmp(name, "Burning Ship") == 0)
 	{
 		fract->name = (char *)malloc(sizeof(char) * 7);
-		fract->name = "Buddhabrot";
-		if (buddhabrot(fract) == 0)
-			return (0);
+		fract->name = "Burning Ship";
+		burning(fract);
 	}
 	else
 		return (0);
+	mlx_put_image_to_window(fract->mlx, fract->win, fract->img.ptr, 0, 0);
 	return (1);
 }
 
@@ -72,10 +73,11 @@ int				main(int argc, char **argv)
 	if (argc != 2 || (init_fract(&fract, argv[1])) == 0)
 	{
 		ft_putstr("usage: ./fractol Julia | ./fractol Mandelbrot ");
-		ft_putstr("| ./fractol Buddhabrot\n");
+		ft_putstr("| ./fractol \"Burning Ship\"\n");
 		return (0);
 	}
 	mlx_key_hook(fract.win, key_react, &fract);
+	mlx_mouse_hook(fract.win)
 	mlx_loop(fract.mlx);
 	return (0);
 }

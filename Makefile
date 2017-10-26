@@ -6,7 +6,7 @@
 #    By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 14:47:20 by abrichar          #+#    #+#              #
-#    Updated: 2017/10/25 17:32:30 by abrichar         ###   ########.fr        #
+#    Updated: 2017/10/26 17:39:42 by abrichar         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,8 +17,7 @@ CPPFLAGS = -Iincludes/
 CFLAGS = -Wall -Werror -Wextra
 E1E2 = -lmlx
 
-SRC_NAME = main.c draw.c mandelbrot.c julia.c buddhabrot.c \
-	rgb.c
+SRC_NAME = main.c draw.c mandelbrot.c julia.c burning.c fractal.c
 SRC_PATH = src
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_PATH = obj
