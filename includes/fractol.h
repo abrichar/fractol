@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/26 17:40:23 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/27 02:28:44 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,6 @@ typedef struct s_img
 	char		*data;
 }				t_img;
 
-typedef struct	s_fractol
-{
-	void		*mlx;
-	void		*win;
-	char		*name;
-	int			mid_x;
-	int			mid_y;
-	t_img		img;
-	int			bpp;
-	int			s_line;
-	int			endian;
-}				t_fractol;
-
 typedef struct	s_fractal
 {
 	int			x;
@@ -61,6 +48,20 @@ typedef struct	s_fractal
 	int			i;
 	double		tmp;
 }				t_fractal;
+
+typedef struct	s_fractol
+{
+	void		*mlx;
+	void		*win;
+	char		*name;
+	int			mid_x;
+	int			mid_y;
+	t_img		img;
+	int			bpp;
+	int			s_line;
+	int			endian;
+	t_fractal	fractal;
+}				t_fractol;
 
 void   			fill_pixel(t_img *img, int x, int y, int color);
 void			mandelbrot(t_fractol *fract);

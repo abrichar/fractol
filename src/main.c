@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/26 18:28:08 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/27 02:31:44 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int		key_react(int keycode, t_fractol *fract)
 		mlx_destroy_window(fract->mlx, fract->win);
 		exit(EXIT_SUCCESS);
 	}
-	ft_putnbr(keycode);
+	if (keycode == 6)
+		zoom(&fract->fractal, fract);
 	return (1);
 }
 
@@ -77,7 +78,6 @@ int				main(int argc, char **argv)
 		return (0);
 	}
 	mlx_key_hook(fract.win, key_react, &fract);
-	mlx_mouse_hook(fract.win)
 	mlx_loop(fract.mlx);
 	return (0);
 }

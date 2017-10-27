@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 18:37:55 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/26 17:37:58 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/27 02:38:24 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	mandelbrot2(t_fractal *mand, t_fractol *fract)
 		}
 		mand->x++;
 	}
+	fract->fractal = *mand;
 }
 
 void		mandelbrot(t_fractol *fract)

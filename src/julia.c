@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 18:09:20 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/26 17:37:33 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/27 02:39:32 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	julia2(t_fractal *julia, t_fractol *fract)
 		}
 		julia->x++;
 	}
+	fract->fractal = *julia;
 }
 
 void	julia(t_fractol *fract)

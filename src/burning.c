@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 15:44:52 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/26 17:38:49 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/27 02:40:13 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ void	burning2(t_fractal *burn, t_fractol *fract)
         }
         burn->x++;
     }
+	fract->fractal = *burn;
 }
 
 void        burning(t_fractol *fract)
 {
-    t_fractal burn;
+	t_fractal burn;
 
     burn.x1 = -1.8;
     burn.x2 = -1.6;
