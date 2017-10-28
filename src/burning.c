@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 15:44:52 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/27 02:40:13 by eliajin          ###   ########.fr       */
+/*   Updated: 2017/10/28 19:15:12 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	burning2(t_fractal *burn, t_fractol *fract)
         burn->y = 0;
         while (burn->y < burn->img_y)
         {
-			burn->c_r = burn->x / burn->zoomx + burn->x1;
-			burn->c_i = burn->y / burn->zoomy + burn->y1;
+			burn->c_r = burn->x / burn->zoom + burn->x1;
+			burn->c_i = burn->y / burn->zoom + burn->y1;
 			burn->z_r = burn->c_r;
 			burn->z_i = burn->c_i;
 			burn->i = 0;
@@ -43,21 +43,17 @@ void	burning2(t_fractal *burn, t_fractol *fract)
         }
         burn->x++;
     }
-	fract->fractal = *burn;
 }
 
-void        burning(t_fractol *fract)
+void        burning(t_fractol *fract, t_fractal *burn)
 {
-	t_fractal burn;
-
-    burn.x1 = -1.8;
-    burn.x2 = -1.6;
-    burn.y1 = -0.13;
-    burn.y2 = 0.02;
-    burn.i_max = 25;
-    burn.img_x = PIXEL_X;
-    burn.img_y = PIXEL_Y;
-    burn.zoomx = burn.img_x / (burn.x2 - burn.x1);
-    burn.zoomy = burn.img_y / (burn.y2 - burn.y1);
-	burning2(&burn, fract);
+    burn->x1 = -1.8;
+    burn->x2 = -1.6;
+    burn->y1 = -0.13;
+    burn->y2 = 0.02;
+    burn->i_max = 25;
+    burn->img_x = PIXEL;
+    burn->img_y = PIXEL;
+    burn->zoom = burn->img_x / (burn->x2 - burn->x1);
+	burning2(burn, fract);
 }

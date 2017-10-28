@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 18:37:55 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/27 02:38:24 by eliajin          ###   ########.fr       */
+/*   Updated: 2017/10/28 19:13:57 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	mandelbrot2(t_fractal *mand, t_fractol *fract)
 		mand->y = 0;
 		while (mand->y < mand->img_y)
 		{
-			mand->c_r = mand->x / mand->zoomx + mand->x1;
-			mand->c_i = mand->y / mand->zoomy + mand->y1;
+			mand->c_r = mand->x / mand->zoom + mand->x1;
+			mand->c_i = mand->y / mand->zoom + mand->y1;
 			mand->z_r = 0;
 			mand->z_i = 0;
 			mand->i = 0;
@@ -42,21 +42,17 @@ void	mandelbrot2(t_fractal *mand, t_fractol *fract)
 		}
 		mand->x++;
 	}
-	fract->fractal = *mand;
 }
 
-void		mandelbrot(t_fractol *fract)
+void		mandelbrot(t_fractol *fract, t_fractal *mand)
 {
-	t_fractal mand;
-
-	mand.x1 = -2.1;
-	mand.x2 = 0.6;
-	mand.y1 = -1.2;
-	mand.y2 = 1.2;
-	mand.i_max = 50;
-	mand.img_x = PIXEL_X;
-	mand.img_y = PIXEL_Y;
-	mand.zoomx = mand.img_x / (mand.x2 - mand.x1);
-	mand.zoomy = mand.img_y / (mand.y2 - mand.y1);
-	mandelbrot2(&mand, fract);
+	mand->x1 = -2.1;
+	mand->x2 = 0.6;
+	mand->y1 = -1.2;
+	mand->y2 = 1.2;
+	mand->i_max = 50;
+	mand->img_x = PIXEL;
+	mand->img_y = PIXEL;
+	mand->zoom = mand->img_x / (mand->x2 - mand->x1);
+	mandelbrot2(mand, fract);
 }
