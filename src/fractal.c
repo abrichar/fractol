@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 17:17:22 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/28 20:07:24 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/28 20:19:01 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	change(t_fractal *fractal, t_fractol *fract)
 {
-	if (strcmp(fract->name, "Julia"))
+	if (strcmp(fract->name, "Julia") == 0)
 		julia2(fractal, fract);
-	else if (strcmp(fract->name, "Mandelbrot"))
+	else if (strcmp(fract->name, "Mandelbrot") == 0)
 		mandelbrot2(fractal, fract);
-	if (strcmp(fract->name, "Burning Ship"))
+	else if (strcmp(fract->name, "Burning Ship") == 0)
 		burning2(fractal, fract);
 	mlx_put_image_to_window(fract->mlx, fract->win, fract->img.ptr, 0, 0);
 }
