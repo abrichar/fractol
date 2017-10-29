@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/13 15:02:29 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/29 02:51:11 by eliajin          ###   ########.fr       */
+/*   Updated: 2017/10/29 16:36:35 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ int		choose_color(int i)
 	if (i < 10)
 		return (0x000000);
 	else if (i < 20)
-		return (0x00FF00);
+		return (0x330000);
 	else if (i < 30)
-		return (0xFF0000);
+		return (0x660000);
 	else if (i < 40)
-		return (0xFFFFFF);
+		return (0x990000);
 	else if (i < 50)
-		return (0x0000FF);
+		return (0xcc0000);
 	else if (i < 60)
-		return (0xFF00F0);
+		return (0xff0000);
 	else if (i < 70)
-		return (0xF0F0F0);
+		return (0xff4d4d);
 	else if (i < 80)
-		return (0xFFF000);
+		return (0xff9999);
 	else if (i < 90)
-		return (0x000FFF);
+		return (0xffcccc);
 	else
 		return (0xFFFFFF);
 

@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 17:17:22 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/28 20:19:01 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/29 16:57:56 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,31 @@ void	change(t_fractal *fractal, t_fractol *fract)
 
 void	zoom(t_fractal *fractal, t_fractol *fract, int x, int y)
 {
-	fractal->zoom *= 2;
-	fractal->tmpx = fractal->x1 + x * (fractal->x2 - fractal->x1) /
-		(fractal->img_x - 50);
-	fractal->tmpy = fractal->y1 + y * (fractal->y2 - fractal->y1) /
-		(PIXEL - 20);
-	fractal->tmpx2 = fractal->x1;
-	fractal->tmpy2 = fractal->y1;
-	fractal->x1 = fractal->tmpx - (fractal->x2 - fractal->x1) / 4;
-	fractal->x2 = fractal->tmpx + (fractal->x2 - fractal->tmpx2) / 4;
-	fractal->y1 = fractal->tmpy - (fractal->y2 - fractal->y1) / 4;
-	fractal->y2 = fractal->tmpy + (fractal->y2 - fractal->tmpy2) / 4;
-	change(fractal, fract);
+	if (fractal->zoom < 50000)
+	{
+		fractal->zoom *= 1.1;
+		fractal->tmpx = fractal->x1 + x * (fractal->x2 - fractal->x1) /
+			(fractal->img_x - 50);
+		fractal->tmpy = fractal->y1 + y * (fractal->y2 - fractal->y1) /
+			(PIXEL - 20);
+		fractal->tmpx2 = fractal->x1;
+		fractal->tmpy2 = fractal->y1;
+		fractal->x1 = fractal->tmpx - (fractal->x2 - fractal->x1) / 4;
+		fractal->x2 = fractal->tmpx + (fractal->x2 - fractal->tmpx2) / 4;
+		fractal->y1 = fractal->tmpy - (fractal->y2 - fractal->y1) / 4;
+		fractal->y2 = fractal->tmpy + (fractal->y2 - fractal->tmpy2) / 4;
+		fractal->i_max += 1;
+		change(fractal, fract);
+		ft_putnbr(fractal->zoom);
+		ft_putchar('\n');
+	}
 }
 
 void	dezoom(t_fractal *fractal, t_fractol *fract, int x, int y)
 {
 	if (fractal->zoom > 250)
 	{
-		fractal->zoom /= 2;
+		fractal->zoom /= 1.1;
 		fractal->tmpx = fractal->x1 + x * (fractal->x2 - fractal->x1) /
 			fractal->img_x;
 		fractal->tmpy = fractal->y1 + y * (fractal->y2 - fractal->y1) /
@@ -54,17 +60,18 @@ void	dezoom(t_fractal *fractal, t_fractol *fract, int x, int y)
 		fractal->x2 = fractal->tmpx + (fractal->x2 - fractal->tmpx2);
 		fractal->y1 = fractal->tmpy - (fractal->y2 - fractal->y1);
 		fractal->y2 = fractal->tmpy + (fractal->y2 - fractal->tmpy2);
+		fractal->i_max -= 1;
 		change(fractal, fract);
 	}
 }
 
 int		mouse_hook(int keycode, int x, int y, t_fractol *fract)
 {
-	if (y > 0)
+	if (y > 0 && x <= fract->fractal->img_x)
 	{
-		if ((keycode == 1 || keycode == 5) && x <= fract->fractal->img_x)
+		if ((keycode == 1 || keycode == 5))
 			zoom(fract->fractal, fract, x, y);
-		if ((keycode == 2 || keycode == 4) && x <= fract->fractal->img_x)
+		if ((keycode == 2 || keycode == 4))
 			dezoom(fract->fractal, fract, x, y);
 	}
 	return (0);
