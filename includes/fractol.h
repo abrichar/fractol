@@ -6,17 +6,17 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/29 02:44:47 by eliajin          ###   ########.fr       */
+/*   Updated: 2017/10/29 22:20:29 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# include <stdio.h> ////////////////////////////
 # include "mlx.h"
 # include "../libft/includes/libft.h"
 # include <math.h>
-# define PIXEL 1000
+# define PIXEL_X 500
+# define PIXEL_Y 750
 
 typedef struct s_img
 {
@@ -77,5 +77,5 @@ void			zoom(t_fractal *fractal, t_fractol *fract, int x, int y);
 void			dezoom(t_fractal *fractal, t_fractol *fract, int x, int y);
 int				julia_hook(int x, int y, t_fractol *fract);
 int				mouse_hook(int keycode, int x, int y, t_fractol *fract);
-int				choose_color(int i);
+unsigned int	getcol(unsigned int const iteration, unsigned int const max);
 #endif

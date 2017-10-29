@@ -6,11 +6,21 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/28 20:20:27 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/29 22:32:44 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#define KEY_I 34
+#define KEY_O 31
+
+static inline void	changeiter(t_fractol *fract, int newval)
+{
+	fract->fractal->i_max = newval;
+	if (!fract->fractal->i_max)
+		fract->fractal->i_max = 1;
+	change(fract->fractal, fract);
+}
 
 static int		key_react(int keycode, t_fractol *fract)
 {
@@ -19,6 +29,10 @@ static int		key_react(int keycode, t_fractol *fract)
 		mlx_destroy_window(fract->mlx, fract->win);
 		exit(EXIT_SUCCESS);
 	}
+	else if (keycode == KEY_O)
+		changeiter(fract, fract->fractal->i_max >> 1);
+	else if (keycode == KEY_I)
+		changeiter(fract, fract->fractal->i_max << 1);
 	return (1);
 }
 
@@ -50,14 +64,14 @@ static int		select_fractal(char *name, t_fractol *fract)
 
 static int		init_fract(t_fractol *fract, char *name)
 {
-	fract->mid_x = PIXEL / 2;
-	fract->mid_y = PIXEL / 2;
+	fract->mid_x = PIXEL_X / 2;
+	fract->mid_y = PIXEL_Y / 2;
 	fract->mlx = mlx_init();
-	fract->win = mlx_new_window(fract->mlx, PIXEL, PIXEL, name);
+	fract->win = mlx_new_window(fract->mlx, PIXEL_X, PIXEL_Y, name);
 	fract->img.bpp = 0;
 	fract->img.s_line = 0;
 	fract->img.endian = 0;
-	fract->img.ptr = mlx_new_image(fract->mlx, PIXEL, PIXEL);
+	fract->img.ptr = mlx_new_image(fract->mlx, PIXEL_X, PIXEL_Y);
 	fract->img.data = (char *)mlx_get_data_addr(fract->img.ptr,
 		&(fract->img.bpp), &(fract->img.s_line), &(fract->img.endian));
 	if (select_fractal(name, fract) == 0)

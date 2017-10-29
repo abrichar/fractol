@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 18:37:55 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/29 16:41:09 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/29 22:32:20 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ void	mandelbrot2(t_fractal *mand, t_fractol *fract)
 				mand->z_i = 2 * mand->z_i * mand->tmp + mand->c_i;
 				mand->i++;
 			}
-			if (mand->i == mand->i_max)
-				fill_pixel(&fract->img, mand->x, mand->y, 0x000000);
-			else
-				fill_pixel(&fract->img, mand->x, mand->y, choose_color(mand->i));
+			fill_pixel(&fract->img, mand->x, mand->y,
+					   getcol((unsigned int)mand->i_max,
+							  (unsigned int)mand->i));
 			mand->y++;
 		}
 		mand->x++;
@@ -51,8 +50,8 @@ void		mandelbrot(t_fractol *fract, t_fractal *mand)
 	mand->y1 = -1.2;
 	mand->y2 = 1.2;
 	mand->i_max = 100;
-	mand->img_x = PIXEL;
-	mand->img_y = PIXEL;
+	mand->img_x = PIXEL_X;
+	mand->img_y = PIXEL_Y;
 	mand->zoom = mand->img_x / (mand->x2 - mand->x1);
 	mandelbrot2(mand, fract);
 }

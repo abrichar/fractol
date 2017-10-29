@@ -6,32 +6,44 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 17:17:22 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/29 16:57:56 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/29 22:33:45 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+unsigned int	getcol(unsigned int const iteration, unsigned int const max)
+{
+	const float		coef = (float)max / (float)iteration;
+	unsigned char	red;
+	unsigned int	color;
+
+	red = (unsigned char)((float)0xff * coef);
+	color = ((unsigned int)red) << 16 | 0x0a40;
+	return (color);
+}
+
 void	change(t_fractal *fractal, t_fractol *fract)
 {
-	if (strcmp(fract->name, "Julia") == 0)
+	mlx_clear_window(fract->mlx, fract->win);
+	mlx_destroy_image(fract->mlx, fract->img.ptr);
+	fract->img.ptr = mlx_new_image(fract->mlx, fractal->img_x, PIXEL_Y);
+	if (ft_strcmp(fract->name, "Julia") == 0)
 		julia2(fractal, fract);
-	else if (strcmp(fract->name, "Mandelbrot") == 0)
+	else if (ft_strcmp(fract->name, "Mandelbrot") == 0)
 		mandelbrot2(fractal, fract);
-	else if (strcmp(fract->name, "Burning Ship") == 0)
+	else if (ft_strcmp(fract->name, "Burning Ship") == 0)
 		burning2(fractal, fract);
 	mlx_put_image_to_window(fract->mlx, fract->win, fract->img.ptr, 0, 0);
 }
 
 void	zoom(t_fractal *fractal, t_fractol *fract, int x, int y)
 {
-	if (fractal->zoom < 50000)
-	{
-		fractal->zoom *= 1.1;
+		fractal->zoom *= 2;
 		fractal->tmpx = fractal->x1 + x * (fractal->x2 - fractal->x1) /
 			(fractal->img_x - 50);
 		fractal->tmpy = fractal->y1 + y * (fractal->y2 - fractal->y1) /
-			(PIXEL - 20);
+			(PIXEL_Y - 20);
 		fractal->tmpx2 = fractal->x1;
 		fractal->tmpy2 = fractal->y1;
 		fractal->x1 = fractal->tmpx - (fractal->x2 - fractal->x1) / 4;
@@ -40,20 +52,17 @@ void	zoom(t_fractal *fractal, t_fractol *fract, int x, int y)
 		fractal->y2 = fractal->tmpy + (fractal->y2 - fractal->tmpy2) / 4;
 		fractal->i_max += 1;
 		change(fractal, fract);
-		ft_putnbr(fractal->zoom);
-		ft_putchar('\n');
-	}
 }
 
 void	dezoom(t_fractal *fractal, t_fractol *fract, int x, int y)
 {
 	if (fractal->zoom > 250)
 	{
-		fractal->zoom /= 1.1;
+		fractal->zoom /= 2;
 		fractal->tmpx = fractal->x1 + x * (fractal->x2 - fractal->x1) /
 			fractal->img_x;
 		fractal->tmpy = fractal->y1 + y * (fractal->y2 - fractal->y1) /
-			PIXEL;
+			PIXEL_Y;
 		fractal->tmpx2 = fractal->x1;
 		fractal->tmpy2 = fractal->y1;
 		fractal->x1 = fractal->tmpx - (fractal->x2 - fractal->x1);

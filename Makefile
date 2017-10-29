@@ -6,7 +6,7 @@
 #    By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 14:47:20 by abrichar          #+#    #+#              #
-#    Updated: 2017/10/29 16:36:52 by abrichar         ###   ########.fr        #
+#    Updated: 2017/10/29 17:56:28 by eliajin          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -31,9 +31,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@cd libft; $(MAKE) -f Makefile
-#	@cd mlx_source; $(MAKE) -f Makefile
-	gcc -o $(NAME) $(SRC) $(LIB) $(E1E2) $(CPPFLAGS) $(FRAMEWORK)
-#	gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(CPPFLAGS) $(FRAMEWORK)
+	@cd mlx_source; $(MAKE) -f Makefile
+#	gcc -o $(NAME) $(SRC) $(LIB) $(E1E2) $(CPPFLAGS) $(FRAMEWORK)
+	gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(CPPFLAGS) $(FRAMEWORK)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -41,12 +41,12 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 
 clean:
 	@cd libft; $(MAKE) -f Makefile clean
-#	@cd mlx_source; $(MAKE) -f Makefile clean
+	@cd mlx_source; $(MAKE) -f Makefile clean
 	/bin/rm -rf $(OBJ_PATH)
 
 fclean: clean
 	/bin/rm -f $(NAME)
-#	/bin/rm -f $(MLX)
+	/bin/rm -f $(MLX)
 	/bin/rm -f $(LIB)
 
 re: fclean all

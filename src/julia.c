@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 18:09:20 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/29 17:20:14 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/29 22:33:08 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int		julia_hook(int x, int y, t_fractol *fract)
 {
 	if (ft_strcmp(fract->name, "Julia") == 0 && x <= fract->fractal->img_x &&
-		y <= PIXEL && x > 0 && y > 0)
+		y <= PIXEL_Y && x > 0 && y > 0)
 	{
 		mlx_clear_window(fract->mlx, fract->win);
 		mlx_destroy_image(fract->mlx, fract->img.ptr);
 		fract->img.ptr = mlx_new_image(fract->mlx, fract->fractal->img_x,
-									   PIXEL);
-		fract->fractal->c_r = (x + 400 - fract->fractal->img_x) / 300;
-		fract->fractal->c_i = (y + 320 - PIXEL) / 300;
+									   PIXEL_Y);
+		fract->fractal->c_r = (x + PIXEL_X - fract->fractal->img_x) * 0.0009;
+		fract->fractal->c_i = y * 0.0009;
 		change(fract->fractal, fract);
 	}
 	return (0);
@@ -49,7 +49,9 @@ void	julia2(t_fractal *julia, t_fractol *fract)
 				julia->i++;
 			}
 			if (julia->i == julia->i_max)
-				fill_pixel(&fract->img, julia->x, julia->y, choose_color(julia->i));
+				fill_pixel(&fract->img, julia->x, julia->y,
+						   getcol((unsigned int)julia->i_max,
+								  (unsigned int)julia->i));
 			julia->y++;
 		}
 		julia->x++;
@@ -64,9 +66,9 @@ void	julia(t_fractol *fract, t_fractal *julia)
 	julia->x2 = 1;
 	julia->y1 = -1.2;
 	julia->y2 = 1.2;
-	julia->i_max = 100;
-	julia->img_x = PIXEL;
-	julia->img_y = PIXEL;
+	julia->i_max = 150;
+	julia->img_x = PIXEL_X;
+	julia->img_y = PIXEL_Y;
 	julia->zoom = julia->img_x / (julia->x2 - julia->x1);
 	julia2(julia, fract);
 }
