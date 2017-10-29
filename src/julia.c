@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 18:09:20 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/28 20:07:27 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/29 02:51:31 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	julia2(t_fractal *julia, t_fractol *fract)
 				julia->i++;
 			}
 			if (julia->i == julia->i_max)
-				fill_pixel(&fract->img, julia->x, julia->y, 0x0000FF);
+				fill_pixel(&fract->img, julia->x, julia->y, choose_color(julia->i));
 			julia->y++;
 		}
 		julia->x++;
@@ -64,7 +64,7 @@ void	julia(t_fractol *fract, t_fractal *julia)
 	julia->x2 = 1;
 	julia->y1 = -1.2;
 	julia->y2 = 1.2;
-	julia->i_max = 90;
+	julia->i_max = 100;
 	julia->img_x = PIXEL;
 	julia->img_y = PIXEL;
 	julia->zoom = julia->img_x / (julia->x2 - julia->x1);

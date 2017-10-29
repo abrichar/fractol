@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/28 20:05:19 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/29 02:44:47 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void			zoom(t_fractal *fractal, t_fractol *fract, int x, int y);
 void			dezoom(t_fractal *fractal, t_fractol *fract, int x, int y);
 int				julia_hook(int x, int y, t_fractol *fract);
 int				mouse_hook(int keycode, int x, int y, t_fractol *fract);
+int				choose_color(int i);
 #endif

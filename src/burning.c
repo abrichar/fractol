@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 15:44:52 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/28 19:15:12 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/29 02:51:57 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	burning2(t_fractal *burn, t_fractol *fract)
 			if (burn->i == burn->i_max)
 				fill_pixel(&fract->img, burn->x, burn->y, 0x0000FF);
 			else
-				fill_pixel(&fract->img, burn->x, burn->y, 0x000000);
+				fill_pixel(&fract->img, burn->x, burn->y, choose_color(burn->i));
 			burn->y++;
         }
         burn->x++;
@@ -51,7 +51,7 @@ void        burning(t_fractol *fract, t_fractal *burn)
     burn->x2 = -1.6;
     burn->y1 = -0.13;
     burn->y2 = 0.02;
-    burn->i_max = 25;
+    burn->i_max = 100;
     burn->img_x = PIXEL;
     burn->img_y = PIXEL;
     burn->zoom = burn->img_x / (burn->x2 - burn->x1);
