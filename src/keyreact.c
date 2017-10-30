@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 16:06:30 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/30 16:30:07 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/30 17:14:21 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,23 @@
 #define RIGHT 124
 #define BOT   125
 #define TOP   126
+#define ESC	  53
 
 static void	key_react2(int keycode, t_fractol *fract)
 {
-	if (keycode == 123)
+	if (keycode == LEFT)
 		fract->move_x--;
-	else if (keycode == 124)
+	else if (keycode == RIGHT)
 		fract->move_x++;
-	else if (keycode == 125)
+	else if (keycode == BOT)
 		fract->move_y++;
-	else if (keycode == 126)
+	else if (keycode == TOP)
 		fract->move_y--;
 }
 
 int			key_react(int keycode, t_fractol *fract)
 {
-	if (keycode == 53)
+	if (keycode == ESC)
 	{
 		mlx_destroy_window(fract->mlx, fract->win);
 		exit(EXIT_SUCCESS);

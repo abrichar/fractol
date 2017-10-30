@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/30 16:13:59 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/30 17:14:37 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,12 @@ int				main(int argc, char **argv)
 	{
 		ft_putstr("usage: ./fractol Julia | ./fractol Mandelbrot ");
 		ft_putstr("| ./fractol \"Burning Ship\"\n");
-		return (0);
+		exit(EXIT_SUCCESS);
 	}
 	mlx_mouse_hook(fract.win, mouse_hook, &fract);
 	mlx_hook(fract.win, 6, (1L << 6), julia_hook, &fract);
 	mlx_key_hook(fract.win, key_react, &fract);
 	mlx_loop(fract.mlx);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
