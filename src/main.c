@@ -6,40 +6,18 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/30 13:27:13 by eliajin          ###   ########.fr       */
+/*   Updated: 2017/10/30 16:13:59 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#define KEY_I 34
-#define KEY_O 31
-#define KEY_S 1
-#define KEY_A 0
 
-static inline void	changeiter(t_fractol *fract, int newval)
+void			changeiter(t_fractol *fract, int newval)
 {
 	fract->fractal->i_max = newval;
 	if (!fract->fractal->i_max)
 		fract->fractal->i_max = 1;
 	change(fract->fractal, fract);
-}
-
-static int		key_react(int keycode, t_fractol *fract)
-{
-	if (keycode == 53)
-	{
-		mlx_destroy_window(fract->mlx, fract->win);
-		exit(EXIT_SUCCESS);
-	}
-	else if (keycode == KEY_O)
-		changeiter(fract, fract->fractal->i_max >> 1);
-	else if (keycode == KEY_I)
-		changeiter(fract, fract->fractal->i_max << 1);
-	else if (keycode == KEY_S)
-		fract->fractal->move = 0;
-	else if (keycode == KEY_A)
-		fract->fractal->move = 1;
-	return (1);
 }
 
 static int		select_fractal(char *name, t_fractol *fract)
@@ -65,14 +43,13 @@ static int		select_fractal(char *name, t_fractol *fract)
 	}
 	else
 		return (0);
-	mlx_put_image_to_window(fract->mlx, fract->win, fract->img.ptr, 0, 0);
+	mlx_put_image_to_window(fract->mlx, fract->win, fract->img.ptr,
+							fract->move_x, fract->move_y);
 	return (1);
 }
 
 static int		init_fract(t_fractol *fract, char *name)
 {
-	fract->mid_x = PIXEL_X / 2;
-	fract->mid_y = PIXEL_Y / 2;
 	fract->mlx = mlx_init();
 	fract->win = mlx_new_window(fract->mlx, PIXEL_X, PIXEL_Y, name);
 	fract->img.bpp = 0;
@@ -82,6 +59,9 @@ static int		init_fract(t_fractol *fract, char *name)
 	fract->img.data = (char *)mlx_get_data_addr(fract->img.ptr,
 		&(fract->img.bpp), &(fract->img.s_line), &(fract->img.endian));
 	fract->fractal->move = 0;
+	fract->fractal->change_color = 0;
+	fract->move_x = 0;
+	fract->move_y = 0;
 	if (select_fractal(name, fract) == 0)
 		return (0);
 	return (1);
@@ -100,7 +80,7 @@ int				main(int argc, char **argv)
 		return (0);
 	}
 	mlx_mouse_hook(fract.win, mouse_hook, &fract);
-	mlx_hook(fract.win, 6, (1L<<6), julia_hook, &fract);
+	mlx_hook(fract.win, 6, (1L << 6), julia_hook, &fract);
 	mlx_key_hook(fract.win, key_react, &fract);
 	mlx_loop(fract.mlx);
 	return (0);

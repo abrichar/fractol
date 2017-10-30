@@ -6,13 +6,26 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 18:37:55 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/29 22:32:20 by eliajin          ###   ########.fr       */
+/*   Updated: 2017/10/30 16:11:18 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	mandelbrot2(t_fractal *mand, t_fractol *fract)
+static void	mandelbrot3(t_fractal *mand)
+{
+	while ((mand->z_r * mand->z_r + mand->z_i * mand->z_i) < 4
+		&& mand->i < mand->i_max)
+	{
+		mand->tmp = mand->z_r;
+		mand->z_r = mand->z_r * mand->z_r - mand->z_i *
+			mand->z_i + mand->c_r;
+		mand->z_i = 2 * mand->z_i * mand->tmp + mand->c_i;
+		mand->i++;
+	}
+}
+
+void		mandelbrot2(t_fractal *mand, t_fractol *fract)
 {
 	mand->x = 0;
 	while (mand->x < mand->img_x)
@@ -25,18 +38,11 @@ void	mandelbrot2(t_fractal *mand, t_fractol *fract)
 			mand->z_r = 0;
 			mand->z_i = 0;
 			mand->i = 0;
-			while ((mand->z_r * mand->z_r + mand->z_i * mand->z_i) < 4
-				   && mand->i < mand->i_max)
-			{
-				mand->tmp = mand->z_r;
-				mand->z_r = mand->z_r * mand->z_r - mand->z_i *
-					mand->z_i + mand->c_r;
-				mand->z_i = 2 * mand->z_i * mand->tmp + mand->c_i;
-				mand->i++;
-			}
+			mandelbrot3(mand);
 			fill_pixel(&fract->img, mand->x, mand->y,
-					   getcol((unsigned int)mand->i_max,
-							  (unsigned int)mand->i));
+					getcol((unsigned int)mand->i_max,
+						(unsigned int)mand->i,
+						mand->change_color));
 			mand->y++;
 		}
 		mand->x++;

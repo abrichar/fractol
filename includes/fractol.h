@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/30 13:24:31 by eliajin          ###   ########.fr       */
+/*   Updated: 2017/10/30 16:31:38 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define PIXEL_X 500
 # define PIXEL_Y 750
 
-typedef struct s_img
+typedef struct	s_img
 {
 	void		*ptr;
 	int			bpp;
@@ -50,6 +50,7 @@ typedef struct	s_fractal
 	double		tmpx2;
 	double		tmpy2;
 	int			move;
+	int			change_color;
 }				t_fractal;
 
 typedef struct	s_fractol
@@ -57,16 +58,16 @@ typedef struct	s_fractol
 	void		*mlx;
 	void		*win;
 	char		*name;
-	int			mid_x;
-	int			mid_y;
 	t_img		img;
 	int			bpp;
 	int			s_line;
 	int			endian;
 	t_fractal	*fractal;
+	int			move_x;
+	int			move_y;
 }				t_fractol;
 
-void   			fill_pixel(t_img *img, int x, int y, int color);
+void			fill_pixel(t_img *img, int x, int y, int color);
 void			mandelbrot(t_fractol *fract, t_fractal *mand);
 void			mandelbrot2(t_fractal *mand, t_fractol *fract);
 void			julia(t_fractol *fract, t_fractal *julia);
@@ -78,5 +79,8 @@ void			zoom(t_fractal *fractal, t_fractol *fract, int x, int y);
 void			dezoom(t_fractal *fractal, t_fractol *fract, int x, int y);
 int				julia_hook(int x, int y, t_fractol *fract);
 int				mouse_hook(int keycode, int x, int y, t_fractol *fract);
-unsigned int	getcol(unsigned int const iteration, unsigned int const max);
+unsigned int	getcol(unsigned int const iteration,
+					unsigned int const max, int change);
+int				key_react(int keycode, t_fractol *fract);
+void			changeiter(t_fractol *fract, int newval);
 #endif
