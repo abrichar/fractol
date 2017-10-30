@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:46:34 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/30 13:24:31 by eliajin          ###   ########.fr       */
+/*   Updated: 2017/10/29 22:20:29 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct	s_fractal
 	double		tmpy;
 	double		tmpx2;
 	double		tmpy2;
-	int			move;
 }				t_fractal;
 
 typedef struct	s_fractol

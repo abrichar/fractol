@@ -6,15 +6,13 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 16:39:43 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/30 13:27:13 by eliajin          ###   ########.fr       */
+/*   Updated: 2017/10/30 13:24:18 by eliajin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #define KEY_I 34
 #define KEY_O 31
-#define KEY_S 1
-#define KEY_A 0
 
 static inline void	changeiter(t_fractol *fract, int newval)
 {
