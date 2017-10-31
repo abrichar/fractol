@@ -6,7 +6,7 @@
 /*   By: abrichar <abrichar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 17:10:11 by abrichar          #+#    #+#             */
-/*   Updated: 2017/10/25 21:12:46 by abrichar         ###   ########.fr       */
+/*   Updated: 2017/10/31 17:51:09 by abrichar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		**ft_tabint(int x, int y)
 	int	index;
 	int indey;
 
-	if (!(tab = (int**)malloc(sizeof(int*) * (x * y + 1) )))
+	if (!(tab = (int**)malloc(sizeof(int*) * (x * y + 1))))
 		return (NULL);
 	index = 0;
 	while (index < x)
